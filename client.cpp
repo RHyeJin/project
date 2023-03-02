@@ -23,6 +23,14 @@ int main(int argc, char* argv[])
     char* pexit = NULL;
     HANDLE mainthread;
 
+    SocketAddress remoteAddr = new InetSocketAddress("10.10.141.10", 1234);
+    Socket socket = new Socket();
+    socket.connect(remoteAddr); //remoteAddr
+
+    BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream()); //output stream
+
+    BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "EUC_KR")); //input stream.
+
     if (argc < 3)
     {
         printf("\n사용법 : mcodes_client [서버주소] [포트번호] [닉네임]\n\n");
